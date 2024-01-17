@@ -1,4 +1,4 @@
-const users = [
+let users = [
     {
         "id": "077ed49d-c4f6-4e0d-9b69-6e22f16e3b23",
         "user": "Pepe Fernández",

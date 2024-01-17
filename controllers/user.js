@@ -103,11 +103,24 @@ const get_all_users = async(req, res) => {
         .send( JSON.stringify( {count: users.length, results: users} ) );
 }
 
+// DELETE /api/user/username/:username
+const delete_user_by_username = async(req, res) => {
+    const username = req.params.username;
+
+    users = users.filter( item => item.username != username );
+
+    res
+        .setHeader('Content-Type', 'application/json')
+        .status(200)
+        .send();
+}
+
 
 module.exports = {
     post_register,
     post_check_username,
     get_user_by_username,
     get_user_by_id,
-    get_all_users
+    get_all_users,
+    delete_user_by_username
 }

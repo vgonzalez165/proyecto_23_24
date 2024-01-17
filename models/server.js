@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 
 const PORT = 3000
 
@@ -21,7 +22,7 @@ class Server {
 
     middlewares() {
         // CORS 
-        // this.app.use( cors() );
+        this.app.use( cors() );
 
         // Lectura y parseo del body
         this.app.use( express.json() );
