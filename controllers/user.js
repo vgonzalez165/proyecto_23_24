@@ -6,29 +6,25 @@ const {users} = require('../models/users');
 // Registra un nuevo usuario en la base de datos
 const post_register = async(req, res) => {
     let { name, username, mail, pass, city, phone, club, rol } = req.body;
+    console.log(req.body);
     let error = false;
 
     // Falta un campo obligatorio
-    if ( !name || !username || !mail || !pass ) {
+    if ( !username ) {
         error = true;
         res.setHeader('Content-Type', 'application/json');
-        res.status(400).end( JSON.stringify( { "success": false, "msg": "Faltan campos obligatorios" } ));
-    };
-
-    // El nombre de usuario ya existe
-    if ( users.find( item => item.username == username) ) {
-        error = true;
-        res.setHeader('Content-Type', 'application/json')
-           .status(400).end( JSON.stringify( { "success": false, "msg": "El nombre de usuario ya existe" } ));
-    };
-
-    // El correo electrónico ya está registrado
-    if ( users.find( item => item.mail == mail) ) {
-        error = true;
-        res.setHeader('Content-Type', 'application/json')
-           .status(400)
-           .end( JSON.stringify( { "success": false, "msg": "El correo electrónico ya está registrado" } ));
-    };
+        res.status(401).end( JSON.stringify( { "success": false, "msg": "El campo username es obligatorio" } ));
+    } else if ( users.find( item => item.username == username) ) {
+                error = true;
+                res.setHeader('Content-Type', 'application/json')
+                .status(401).end( JSON.stringify( { "success": false, "msg": "El nombre de usuario ya existe" } ));
+    }
+    // else if ( users.find( item => item.mail == mail) ) {
+    //     error = true;
+    //     res.setHeader('Content-Type', 'application/json')
+    //        .status(400)
+    //        .end( JSON.stringify( { "success": false, "msg": "El correo electrónico ya está registrado" } ));
+    // };
 
     // El rol no es válido
     if (!rol) {
