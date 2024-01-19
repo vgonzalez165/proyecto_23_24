@@ -24,8 +24,22 @@ const post_login = async(req, res) => {
     } else {
         res.status(401).send();
     }
-    };
+};
+
+const get_token = async(req, res) => {
+    // Authorization header
+    const old_token = req.headers.authorization;
+    try {
+        const payload = jwt.verify(old_token, "P@ssw0rd");
+        // const user = users.find( item => item.username==old_token.)
+        console.log(payload);
+    } catch {
+        console.log("No se ha verificado el token");
+    }
+    res.status(200).send("NO IMPLEMENTADO");
+}
 
 module.exports = {
-    post_login
+    post_login,
+    get_token
 }

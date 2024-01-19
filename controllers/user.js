@@ -1,6 +1,6 @@
 const { response, request } = require('express');
 const { randomUUID } = require('crypto');
-const {users} = require('../models/users');
+let {users} = require('../models/users');
 
 // POST /api/user/register
 // Registra un nuevo usuario en la base de datos
@@ -103,13 +103,38 @@ const get_all_users = async(req, res) => {
 const delete_user_by_username = async(req, res) => {
     const username = req.params.username;
 
-    users = users.filter( item => item.username != username );
+    const user = users.find( item => item.username==username );
 
-    res
-        .setHeader('Content-Type', 'application/json')
-        .status(200)
-        .send();
+    if (!user) {
+        res.status(404).send();
+    } else {
+        users = users.filter( item => item.username != username );
+    
+        res
+            .setHeader('Content-Type', 'application/json')
+            .status(200)
+            .send();
+    }
 }
+
+// DELETE /api/user/id/:id
+const delete_user_by_id = async(req, res) => {
+    const id = req.params.id;
+
+    const user = users.find( item => item.id==id );
+
+    if (!user) {
+        res.status(404).send();
+    } else {
+        users = users.filter( item => item.id != id );
+    
+        res
+            .setHeader('Content-Type', 'application/json')
+            .status(200)
+            .send();
+    }
+}
+
 
 
 module.exports = {
@@ -118,5 +143,6 @@ module.exports = {
     get_user_by_username,
     get_user_by_id,
     get_all_users,
-    delete_user_by_username
+    delete_user_by_username,
+    delete_user_by_id
 }
