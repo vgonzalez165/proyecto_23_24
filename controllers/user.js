@@ -109,6 +109,7 @@ const delete_user_by_username = async(req, res) => {
         res.status(404).send();
     } else {
         users = users.filter( item => item.username != username );
+        console.log(users);
     
         res
             .setHeader('Content-Type', 'application/json')
