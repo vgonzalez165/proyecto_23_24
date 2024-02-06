@@ -132,5 +132,31 @@
     <p>Solicita la renovación del token</p>
 
 
+    <h1>Endpoints CARRERA</h1>
+
+    <h2>POST /api/race/new</h2>
+    <h3>Función</h3>
+    <p>Registra una carrera en el servidor</p>
+    <h3>Cuerpo del mensaje</h3>
+    <p>Se debe enviar un JSON en el cuerpo del mensaje con los datos de la carrera </p>
+    <h3>Devuelve</h3>
+    <p>JSON con los datos de la carrera y el identificador asignado</p>
+    
+    <h2>GET /api/race/:id</h2>
+    <h3>Función</h3>
+    <p>Obtiene una carrera a partir de su identificador</p>
+
+    <h2>GET /api/race/all</h2>
+    <h3>Función</h3>
+    <p>Obtiene el listado de todas las carreras, en cada una muestra el identificador y el campo name</p>
+
+    <h2>GET /api/race/:id/field</h2>
+    <h3>Función</h3>
+    <p>Obtiene un campo concreto de una carrera</p>
+
+    <h2>DELETE /api/race/:id</h2>
+    <h3>Función</h3>
+    <p>Elimina una carrera</p>
+
 </body>
 </html>

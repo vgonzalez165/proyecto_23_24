@@ -6,7 +6,6 @@ let {users} = require('../models/users');
 // Registra un nuevo usuario en la base de datos
 const post_register = async(req, res) => {
     let { name, username, mail, pass, city, phone, club, rol } = req.body;
-    console.log(req.body);
     let error = false;
 
     // Falta un campo obligatorio
