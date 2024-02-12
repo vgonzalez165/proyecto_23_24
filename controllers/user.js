@@ -136,6 +136,22 @@ const delete_user_by_id = async(req, res) => {
 }
 
 
+const put_user = async(req, res) => {
+    const id = req.params.id;
+
+    let userIndex = users.findIndex( item => item.id==id );
+
+    if (userIndex<0) {
+        res.status(404).send();
+    } else {
+        users[userIndex] = { ...users[userIndex], ...req.body };
+        res
+            .status(200)
+            .setHeader('Content-Type', 'application/json')
+            .send(JSON.stringify(users[userIndex]));
+    }
+}
+
 
 module.exports = {
     post_register,
@@ -144,5 +160,6 @@ module.exports = {
     get_user_by_id,
     get_all_users,
     delete_user_by_username,
-    delete_user_by_id
+    delete_user_by_id,
+    put_user
 }
